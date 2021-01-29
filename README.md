@@ -5,11 +5,11 @@ This functionality was proposed to be included with the addition of `HEALTHCHECK
 This container is a stand-in till there is native support for `--exit-on-unhealthy` https://github.com/docker/docker/pull/22719.
 
 ## Supported tags and Dockerfile links
-- [`latest` (*Dockerfile*)](https://github.com/willfarrell/docker-autoheal/blob/main/Dockerfile) - Built daily
-- [`1.0.0` (*Dockerfile*)](https://github.com/willfarrell/docker-autoheal/blob/1.0.0/Dockerfile)
-- [`v0.7.0` (*Dockerfile*)](https://github.com/willfarrell/docker-autoheal/blob/v0.7.0/Dockerfile)
+- [`latest` (*Dockerfile*)](https://github.com/colemamd/docker-autoheal/blob/main/Dockerfile) - Built daily
+- [`1.0.0` (*Dockerfile*)](https://github.com/colemamd/docker-autoheal/blob/1.0.0/Dockerfile)
+- [`v0.7.0` (*Dockerfile*)](https://github.com/colemamd/docker-autoheal/blob/v0.7.0/Dockerfile)
 
-![](https://img.shields.io/docker/pulls/willfarrell/autoheal "Total docker pulls") [![](https://images.microbadger.com/badges/image/willfarrell/autoheal.svg)](http://microbadger.com/images/willfarrell/autoheal "Docker layer breakdown")
+![](https://img.shields.io/docker/pulls/colemamd/autoheal "Total docker pulls") [![](https://images.microbadger.com/badges/image/colemamd/autoheal.svg)](http://microbadger.com/images/colemamd/autoheal "Docker layer breakdown")
 
 ## How to use
 ### UNIX socket passthrough
@@ -19,7 +19,7 @@ docker run -d \
     --restart=always \
     -e AUTOHEAL_CONTAINER_LABEL=all \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    willfarrell/autoheal
+    colemamd/autoheal
 ```
 ### TCP socket
 ```bash
@@ -29,7 +29,7 @@ docker run -d \
     -e AUTOHEAL_CONTAINER_LABEL=all \
     -e DOCKER_SOCK=tcp://HOST:PORT \
     -v /path/to/certs/:/certs/:ro \
-    willfarrell/autoheal
+    colemamd/autoheal
 ```
 a) Apply the label `autoheal=true` to your container to have it watched.
 
