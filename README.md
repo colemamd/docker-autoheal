@@ -1,18 +1,22 @@
-# Docker Autoheal
+# Docker Autoheal (based on willfarrel/autoheal)
 
-Monitor and restart unhealthy docker containers. 
+Monitor and restart unhealthy docker containers.
 This functionality was proposed to be included with the addition of `HEALTHCHECK`, however didn't make the cut.
-This container is a stand-in till there is native support for `--exit-on-unhealthy` https://github.com/docker/docker/pull/22719.
+This container is a stand-in till there is native support for `--exit-on-unhealthy` <https://github.com/docker/docker/pull/22719>.
 
 ## Supported tags and Dockerfile links
-- [`latest` (*Dockerfile*)](https://github.com/colemamd/docker-autoheal/blob/main/Dockerfile) - Built daily
-- [`1.0.0` (*Dockerfile*)](https://github.com/colemamd/docker-autoheal/blob/1.0.0/Dockerfile)
-- [`v0.7.0` (*Dockerfile*)](https://github.com/colemamd/docker-autoheal/blob/v0.7.0/Dockerfile)
 
-![](https://img.shields.io/docker/pulls/colemamd/autoheal "Total docker pulls") [![](https://images.microbadger.com/badges/image/colemamd/autoheal.svg)](http://microbadger.com/images/colemamd/autoheal "Docker layer breakdown")
+- [`latest` (*Dockerfile*)](https://github.com/colemamd/docker-autoheal/blob/main/Dockerfile)
+
+![build status](https://img.shields.io/github/workflow/status/colemamd/docker-autoheal/build)
+![docker pulls](https://img.shields.io/docker/pulls/colemamd/autoheal "Total docker pulls")
+![image size](https://img.shields.io/docker/image-size/colemamd/autoheal/latest "Total image size")
+![mit license](https://img.shields.io/github/license/colemamd/docker-autoheal)
 
 ## How to use
+
 ### UNIX socket passthrough
+
 ```bash
 docker run -d \
     --name autoheal \
@@ -21,7 +25,9 @@ docker run -d \
     -v /var/run/docker.sock:/var/run/docker.sock \
     colemamd/autoheal
 ```
+
 ### TCP socket
+
 ```bash
 docker run -d \
     --name autoheal \
@@ -31,29 +37,33 @@ docker run -d \
     -v /path/to/certs/:/certs/:ro \
     colemamd/autoheal
 ```
+
 a) Apply the label `autoheal=true` to your container to have it watched.
 
-b) Set ENV `AUTOHEAL_CONTAINER_LABEL=all` to watch all running containers. 
+b) Set ENV `AUTOHEAL_CONTAINER_LABEL=all` to watch all running containers.
 
 c) Set ENV `AUTOHEAL_CONTAINER_LABEL` to existing label name that has the value `true`.
 
-Note: You must apply `HEALTHCHECK` to your docker images first. See https://docs.docker.com/engine/reference/builder/#healthcheck for details.
-See https://docs.docker.com/engine/security/https/ for how to configure TCP with mTLS
+Note: You must apply `HEALTHCHECK` to your docker images first. See <https://docs.docker.com/engine/reference/builder/#healthcheck> for details.
+See <https://docs.docker.com/engine/security/https/> for how to configure TCP with mTLS
 
 The certificates, and keys need these names:
-* ca.pem
-* client-cert.pem
-* client-key.pem
+
+- ca.pem
+- client-cert.pem
+- client-key.pem
 
 ### Change Timezone
+
 If you need the timezone to match the local machine, you can map the `/etc/localtime` into the container.
-```
+
+```bash
 docker run ... -v /etc/localtime:/etc/localtime:ro
 ```
 
-
 ## ENV Defaults
-```
+
+```bash
 AUTOHEAL_CONTAINER_LABEL=autoheal
 AUTOHEAL_INTERVAL=5   # check every 5 seconds
 AUTOHEAL_START_PERIOD=0   # wait 0 seconds before first health check
@@ -63,11 +73,13 @@ CURL_TIMEOUT=30     # --max-time seconds for curl requests to Docker API
 ```
 
 ### Optional Container Labels
-```
+
+```bash
 autoheal.stop.timeout=20        # Per containers override for stop timeout seconds during restart
 ```
 
 ## Testing
+
 ```bash
 docker build -t autoheal .
 
@@ -78,10 +90,11 @@ docker run -d \
 ```
 
 ## Discord Notifications
+
 Notifications are handled by the [apprise container](https://hub.docker.com/r/caronc/apprise).  
 Apprise Discord config [documentation](https://github.com/caronc/apprise/wiki/Notify_discord)
 
-```
+```bash
 APPRISE_CONTAINER=apprise             #your apprise container name OR ip_address (make sure to add port number if not default), default name is apprise
 DISCORD_WEBHOOK_ID=abcd1234           #your Discord webhook ID
 DISCORD_WEBHOOK_TOKEN=ABCD1234        #your Discord webhook token
