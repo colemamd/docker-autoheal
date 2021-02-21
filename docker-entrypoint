@@ -59,7 +59,7 @@ restart_container() {
   #Notifications via Apprise container
   if [ -n "${APPRISE_CONTAINER}" ]; then
     curl -X POST -d '{"urls":"discord://'${DISCORD_WEBHOOK_ID}'/'${DISCORD_WEBHOOK_TOKEN}'","body":"Monitored container '${container_id}' restarted.","title":"Container '${container_id}' restarted."}' \
-    -H "Content-Type: application/json" http://"${APPRISE_CONTAINER}:{APPRISE_PORT}"/notify/
+    -H "Content-Type: application/json" http://"${APPRISE_CONTAINER}:${APPRISE_PORT}"/notify/
   fi
 }
 
