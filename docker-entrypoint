@@ -58,8 +58,7 @@ restart_container() {
   docker_curl -f -X POST "${HTTP_ENDPOINT}/containers/${container_id}/restart?t=${timeout}"
   #Notifications via Apprise container
   if [ -n "${APPRISE_CONTAINER}" ]; then
-    curl -X POST -d '{"urls":"discord://${DISCORD_WEBHOOK_ID}/${DISCORD_WEBHOOK_TOKEN}","body":"Monitored container ${container_id} restarted.","title":"Container ${container_id} restarted."}' \
-    -H "Content-Type: application/json" http://"${APPRISE_CONTAINER}:${APPRISE_PORT}"/notify/
+    curl -X POST -d '{"urls":"discord://${DISCORD_WEBHOOK_ID}/${DISCORD_WEBHOOK_TOKEN}","body":"Monitored container ${container_id} restarted.","title":"Container ${container_id} restarted."}' -H "Content-Type: application/json" http://"${APPRISE_CONTAINER}:${APPRISE_PORT}"/notify/
   fi
 }
 
