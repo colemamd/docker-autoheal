@@ -8,6 +8,7 @@ DOCKER_SOCK=${DOCKER_SOCK:-/var/run/docker.sock}
 UNIX_SOCK=""
 CURL_TIMEOUT=${CURL_TIMEOUT:-30}
 APPRISE_CONTAINER=${APPRISE_CONTAINER:-apprise}
+APPRISE_PORT=${APPRISE_PORT:-8080}
 
 # only use unix domain socket if no TCP endpoint is defined
 case "${DOCKER_SOCK}" in
@@ -58,7 +59,7 @@ restart_container() {
   #Notifications via Apprise container
   if [ -n "${APPRISE_CONTAINER}" ]; then
     curl -X POST -d '{"urls":"discord://'${DISCORD_WEBHOOK_ID}'/'${DISCORD_WEBHOOK_TOKEN}'","body":"Monitored container '${container_id}' restarted.","title":"Container '${container_id}' restarted."}' \
-    -H "Content-Type: application/json" http://"${APPRISE_CONTAINER}":8080/notify/
+    -H "Content-Type: application/json" http://"${APPRISE_CONTAINER}:{APPRISE_PORT}"/notify/
   fi
 }
 
