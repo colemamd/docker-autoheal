@@ -8,7 +8,7 @@ DOCKER_SOCK=${DOCKER_SOCK:-/var/run/docker.sock}
 UNIX_SOCK=""
 CURL_TIMEOUT=${CURL_TIMEOUT:-30}
 APPRISE_CONTAINER=${APPRISE_CONTAINER:-apprise}
-APPRISE_PORT=${APPRISE_PORT:-8080}
+APPRISE_PORT=${APPRISE_PORT:-8000}
 
 # only use unix domain socket if no TCP endpoint is defined
 case "${DOCKER_SOCK}" in
