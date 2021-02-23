@@ -89,13 +89,16 @@ docker run -d \
     autoheal                                                                        
 ```
 
-## Discord Notifications
+## Apprise Notifications
 
-Notifications are handled by the [apprise container](https://hub.docker.com/r/caronc/apprise).  
+(Currently only Discord notifications are supported)
+
+Notifications are handled by a separate [apprise container](https://hub.docker.com/r/caronc/apprise).  
 Apprise Discord config [documentation](https://github.com/caronc/apprise/wiki/Notify_discord)
 
 ```bash
-APPRISE_CONTAINER=apprise             #your apprise container name OR ip_address (make sure to add port number if not default), default name is apprise
+APPRISE_CONTAINER=apprise             #your Apprise container name OR ip_address, default name is apprise
+APPRISE_PORT=8000                     #your Apprise port number, default is 8000
 DISCORD_WEBHOOK_ID=abcd1234           #your Discord webhook ID
 DISCORD_WEBHOOK_TOKEN=ABCD1234        #your Discord webhook token
 ```
