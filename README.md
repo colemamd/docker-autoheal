@@ -7,7 +7,7 @@ This container is a stand-in till there is native support for `--exit-on-unhealt
 ## Supported tags and Dockerfile links
 
 - [`latest` (*Dockerfile*)](https://github.com/colemamd/docker-autoheal/blob/main/Dockerfile)
-- [`v0.1` (*Dockerfile*)](https://github.com/colemamd/docker-autoheal/blob/main/Dockerfile)
+- [`v0.1` (*Dockerfile*)](https://github.com/colemamd/docker-autoheal/blob/v0.1/Dockerfile)
 
 ![build status](https://img.shields.io/github/workflow/status/colemamd/docker-autoheal/build)
 ![docker pulls](https://img.shields.io/docker/pulls/colemamd/autoheal "Total docker pulls")
